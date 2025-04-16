@@ -104,7 +104,6 @@
             var summerStart = new Date(year, 5, 21);
             var fallStart   = new Date(year, 8, 23); 
             var winterStart = new Date(year, 11, 21); 
-            var nextYearWinterEnd = new Date(year + 1, 2, 19);
 			
 			if(formDate >= springStart && formDate < summerStart)
 			{
@@ -113,7 +112,7 @@
 				season = "Summer";
 			}else if (formDate >= fallStart && formDate < winterStart){
 				season = "Fall";
-            }else if (formDate >= winterStart && formDate <= nextYearWinterEnd){
+            }else if (formDate >= winterStart || formDate < springStart){
 				season = "Winter";
             }    
 
