@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Seasonal Styles</title>
+     <title>Extra - Credit, Seasonal Styles</title>
   <meta charset="utf-8" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="viewport" content="width=device-width" />
@@ -55,6 +55,14 @@
    <main class="wrapper">
     <header><h3>Outfitter for All Seasons!</h3></header>
     <p>
+        <form id="dateForm">
+        <label for="dateField">
+            Input Date:<input type="text" name="dateField" id="dateField" />
+        </label>
+            <input type="submit" value="submit" />
+        </form>
+     </p>
+    <p>
     The colors of the seasonal images are as follows:
         <ul class="colors">
             <li>Spring: <b>#2B7129</b></li>
@@ -85,5 +93,33 @@
     </footer>
   </main>
   <script src="js/main.js"></script>
+  <script>
+	$("document").ready(function(){
+		$('#dateForm').submit(function(e){//handle form submission event
+            e.preventDefault();//stop default submission
+			var datetext = $('input[name=dateField]').val();//grab data from textbox
+			var formDate = new Date(datetext);//create a date from form input
+            var year = formDate.getFullYear();
+            var springStart = new Date(year, 2, 20); 
+            var summerStart = new Date(year, 5, 21);
+            var fallStart   = new Date(year, 8, 23); 
+            var winterStart = new Date(year, 11, 21); 
+            var nextYearWinterEnd = new Date(year + 1, 2, 19);
+			
+			if(formDate >= springStart && formDate < summerStart)
+			{
+				season = "Spring";
+			}else if (formDate >= summerStart && formDate < fallStart){
+				season = "Summer";
+			}else if (formDate >= fallStart && formDate < winterStart){
+				season = "Fall";
+            }else if (formDate >= winterStart && formDate <= nextYearWinterEnd){
+				season = "Winter";
+            }    
+
+            seasonStyle(season)
+		});
+	});
+    </script>
   </body>
 </html>
